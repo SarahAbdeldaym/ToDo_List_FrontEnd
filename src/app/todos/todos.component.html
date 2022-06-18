@@ -1,0 +1,27 @@
+<div class="p-30">
+  <p-pickList
+    [source]="pendingTodos"
+    [target]="doneTodos"
+    [dragdrop]="true"
+    (onMoveToTarget)="updateTodos()"
+    (onMoveToSource)="updateTodos()"
+    (onMoveAllToTarget)="updateTodos()"
+    (onMoveAllToSource)="updateTodos()"
+  >
+    <ng-template let-todo pTemplate="item">
+      <div>
+        <i *ngIf="todo.is_done" class="pi pi-check"></i>
+        <i *ngIf="!todo.is_done" class="pi pi-times"></i>
+        {{ todo.title }}
+
+        <p-dialog header="{{todo.title}}" [(visible)]="todo == visibleTodo">
+          {{ todo.body }}
+        </p-dialog>
+
+        <button type="button" (click)="showDetails(todo)" icon="pi pi-info-circle" label="Show">Show</button>
+        <button type="button" (click)="showDetails(todo)" icon="pi pi-info-circle" label="Show">Edit</button>
+        <button type="button" (click)="showDetails(todo)" icon="pi pi-info-circle" label="Show">Delete</button>
+      </div>
+    </ng-template>
+  </p-pickList>
+</div>
