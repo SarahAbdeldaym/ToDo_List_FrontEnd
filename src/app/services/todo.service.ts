@@ -18,4 +18,12 @@ export class TodoService {
   updateTodo(todoId: number, request: UpdateTodoRequest): Observable<any> {
     return this.httpClient.put(this.baseUrl + '/' + todoId, request);
   }
-}
+
+  markTodoAsDone(todoId: number): Observable<any> {
+    return this.httpClient.post(this.baseUrl + '/' + todoId + '/' + 'mark-as-done', {});
+  }
+
+  reopenTodo(todoId: number): Observable<any> {
+    return this.httpClient.post(this.baseUrl + '/' + todoId + '/' + 'reopen', {});
+  }
+ }

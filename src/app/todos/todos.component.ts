@@ -24,6 +24,22 @@ export class TodosComponent implements OnInit {
     this.pendingTodos.forEach((todo) => (todo.is_done = false));
   }
 
+  public completeTodos(): void {
+    this.doneTodos.forEach((todo: Todo) => {
+      if (!todo.is_done && todo.id) {
+        this.todoService.markTodoAsDone(todo.id).subscribe(() => todo.is_done = true)
+      }
+    });
+  }
+
+  public reopenTodos(): void {
+    this.pendingTodos.forEach((todo: Todo) => {
+      if (todo.is_done && todo.id) {
+        this.todoService.reopenTodo(todo.id).subscribe(() => todo.is_done = false)
+      }
+    });
+  }
+
   public showDetails(todo: Todo) {
     this.visibleTodo = todo;
   }

@@ -3,10 +3,10 @@
     [source]="pendingTodos"
     [target]="doneTodos"
     [dragdrop]="true"
-    (onMoveToTarget)="updateTodosCompletion()"
-    (onMoveToSource)="updateTodosCompletion()"
-    (onMoveAllToTarget)="updateTodosCompletion()"
-    (onMoveAllToSource)="updateTodosCompletion()"
+    (onMoveToTarget)="completeTodos()"
+    (onMoveToSource)="reopenTodos()"
+    (onMoveAllToTarget)="completeTodos()"
+    (onMoveAllToSource)="reopenTodos()"
   >
     <ng-template let-todo pTemplate="item">
       <div>
