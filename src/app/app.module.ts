@@ -8,15 +8,17 @@ import { CoverComponent } from './todos/cover/cover.component';
 import {PickListModule} from 'primeng/picklist';
 import {DialogModule} from 'primeng/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
+import { UpdateTodoComponent } from './update-todo/update-todo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodosComponent,
     TodoComponent,
-    CoverComponent
+    CoverComponent,
+    UpdateTodoComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     DialogModule,
     FormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

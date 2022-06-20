@@ -3,24 +3,53 @@
     [source]="pendingTodos"
     [target]="doneTodos"
     [dragdrop]="true"
-    (onMoveToTarget)="updateTodos()"
-    (onMoveToSource)="updateTodos()"
-    (onMoveAllToTarget)="updateTodos()"
-    (onMoveAllToSource)="updateTodos()"
+    (onMoveToTarget)="updateTodosCompletion()"
+    (onMoveToSource)="updateTodosCompletion()"
+    (onMoveAllToTarget)="updateTodosCompletion()"
+    (onMoveAllToSource)="updateTodosCompletion()"
   >
     <ng-template let-todo pTemplate="item">
       <div>
         <i *ngIf="todo.is_done" class="pi pi-check"></i>
         <i *ngIf="!todo.is_done" class="pi pi-times"></i>
         {{ todo.title }}
-
-        <p-dialog header="{{todo.title}}" [(visible)]="todo == visibleTodo">
+        <!-- get todos -->
+        <p-dialog header="{{ todo.title }}" [(visible)]="todo == visibleTodo">
           {{ todo.body }}
         </p-dialog>
 
-        <button type="button" (click)="showDetails(todo)" icon="pi pi-info-circle" label="Show">Show</button>
-        <button type="button" (click)="showDetails(todo)" icon="pi pi-info-circle" label="Show">Edit</button>
-        <button type="button" (click)="showDetails(todo)" icon="pi pi-info-circle" label="Show">Delete</button>
+        <!-- update todo -->
+        <p-dialog [(visible)]="todo == updatedTodo">
+          <app-update-todo
+            [todo]="todo"
+            (todoUpdated)="refreshTodo($event)"
+          ></app-update-todo>
+        </p-dialog>
+
+        <button
+          type="button"
+          (click)="showDetails(todo)"
+          icon="pi pi-info-circle"
+          label="Show"
+        >
+          Show
+        </button>
+        <button
+          type="button"
+          (click)="updateTodo(todo)"
+          icon="pi pi-info-circle"
+          label="Edit"
+        >
+          Edit
+        </button>
+        <button
+          type="button"
+          (click)="showDetails(todo)"
+          icon="pi pi-info-circle"
+          label="Show"
+        >
+          Delete
+        </button>
       </div>
     </ng-template>
   </p-pickList>
