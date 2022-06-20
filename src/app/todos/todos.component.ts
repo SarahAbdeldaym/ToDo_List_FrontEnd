@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from '../models/Todo';
+import { TodoService } from '../services/todo.service';
 
 
 @Component({
@@ -9,24 +10,11 @@ import { Todo } from '../models/Todo';
 })
 export class TodosComponent implements OnInit {
 
-  private todos: Todo[] = [
-    {
-      title: "todo title",
-      body: "the body",
-      is_done: false
-    },
-    {
-      title: "done todo title",
-      body: "the complete body",
-      is_done: true
-    }
-  ];
-
   public pendingTodos: Todo[] = [];
   public doneTodos: Todo[] = [];
   public visibleTodo: Todo | null = null;
 
-  constructor() { }
+  constructor(private todoService: TodoService) { }
 
   ngOnInit(): void {
     this.getTodos();
@@ -48,8 +36,13 @@ export class TodosComponent implements OnInit {
   }
 
     private getTodos(): void {
-    this.doneTodos = this.todos.filter(todo => todo.is_done);
-    this.pendingTodos = this.todos.filter(todo => ! todo.is_done);
+      this.todoService.getTodos().subscribe(
+        res => {
+          let todos = res.data.data;
+          this.doneTodos = todos.filter((todo: Todo) => todo.is_done);
+          this.pendingTodos = todos.filter((todo: Todo) => ! todo.is_done);
+        }
+      )
   }
 
 }
