@@ -26,4 +26,8 @@ export class TodoService {
   reopenTodo(todoId: number): Observable<any> {
     return this.httpClient.post(this.baseUrl + '/' + todoId + '/' + 'reopen', {});
   }
+
+  deleteTodo(todoId: number): Observable<any> {
+    return this.httpClient.delete(this.baseUrl + '/' + todoId);
+  }
  }
