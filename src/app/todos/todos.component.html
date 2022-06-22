@@ -1,64 +1,75 @@
+<h1 class="text-center">Your Todo List</h1>
 
-<button
-  *ngIf="isUserAuthenticated"
-  pButton
-  pRipple
-  type="button"
-  icon="pi pi-plus"
-  class="p-button-rounded"
-  (click)="openTodoForm()">
-</button>
+<div class="mt-5">
+  <label for="button"></label>
+  <button
+    *ngIf="isUserAuthenticated"
+    pButton
+    pRipple
+    type="button"
+    icon="pi pi-plus"
+    class="p-button-rounded"
+    (click)="openTodoForm()">
+  </button>
 
-<p-dialog [(visible)]="isAddingTodo">
-  <app-todo-form (onSave)="addTodo($event)"></app-todo-form>
-</p-dialog>
+  <p-dialog [(visible)]="isAddingTodo">
+    <app-todo-form (onSave)="addTodo($event)"></app-todo-form>
+  </p-dialog>
 
-<div class="p-30">
-  <p-pickList
-    [source]="pendingTodos"
-    [target]="doneTodos"
-    [dragdrop]="true"
-    (onMoveToTarget)="completeTodos()"
-    (onMoveToSource)="reopenTodos()"
-    (onMoveAllToTarget)="completeTodos()"
-    (onMoveAllToSource)="reopenTodos()">
-    <ng-template let-todo pTemplate="item">
-      <div>
-        <i *ngIf="todo.is_done" class="pi pi-check"></i>
-        <i *ngIf="!todo.is_done" class="pi pi-times"></i>
-        {{ todo.title }}
-        <!-- get todos -->
-        <p-dialog header="{{ todo.title }}" [(visible)]="todo == visibleTodo">
-          {{ todo.body }}
-        </p-dialog>
+  <div class="p-30">
+    <p-pickList class="p-30"
+      [source]="pendingTodos"
+      [target]="doneTodos"
+      [dragdrop]="true"
+      (onMoveToTarget)="completeTodos()"
+      (onMoveToSource)="reopenTodos()"
+      (onMoveAllToTarget)="completeTodos()"
+      (onMoveAllToSource)="reopenTodos()">
+      <ng-template let-todo pTemplate="item">
+        <div>
+          <i *ngIf="todo.is_done" class="pi pi-check"></i>
+          <i *ngIf="!todo.is_done" class="pi pi-times"></i>
+          {{ todo.title }}
 
-        <!-- update todo -->
-        <p-dialog [(visible)]="todo == updatedTodo">
-          <app-todo-form [todo]="todo" (onSave)="refreshTodo($event)"></app-todo-form>
-        </p-dialog>
 
-        <button
-          type="button"
-          (click)="showDetails(todo)"
-          icon="pi pi-info-circle"
-          label="Show">
-          Show
-        </button>
-        <button
-          type="button"
-          (click)="updateTodo(todo)"
-          icon="pi pi-info-circle"
-          label="Edit">
-          Edit
-        </button>
-        <button
-          type="button"
-          (click)="deleteTodo(todo)"
-          icon="pi pi-info-circle"
-          label="Show">
-          Delete
-        </button>
-      </div>
-    </ng-template>
-  </p-pickList>
+          <!-- get todos -->
+          <p-dialog header="{{ todo.title }}" [(visible)]="todo == visibleTodo">
+            {{ todo.body }}
+          </p-dialog>
+
+          <!-- update todo -->
+          <p-dialog [(visible)]="todo == updatedTodo">
+            <app-todo-form [todo]="todo" (onSave)="refreshTodo($event)"></app-todo-form>
+          </p-dialog>
+
+
+          <div class="d-flex justify-content-end">
+            <button
+              type="button"
+              pButton
+              (click)="showDetails(todo)"
+              icon="pi pi-info-circle"
+              label="Show">
+            </button>
+
+            <button
+              pButton
+              type="button"
+              (click)="updateTodo(todo)"
+              icon="pi pi-info-circle"
+              label="Edit">
+            </button>
+
+            <button
+              pButton
+              type="button"
+              (click)="deleteTodo(todo)"
+              icon="pi pi-info-circle"
+              label="Delete">
+            </button>
+          </div>
+        </div>
+      </ng-template>
+    </p-pickList>
+  </div>
 </div>

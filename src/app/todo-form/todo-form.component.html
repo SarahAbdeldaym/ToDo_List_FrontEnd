@@ -1,7 +1,14 @@
-<label for="title"> Title</label>
-<input type="text" [formControl]="title" />
-<br />
+<div w-50>
+
+<label  for="title"> Title</label>
+<br>
+<input   type="text" [formControl]="title" />
+<br>
 <label for="body"> Body</label>
+<br>
 <input type="text" [formControl]="body" />
-<br />
+<br>
+<br>
 <button (click)="save()">{{ saveButtonText }}</button>
+
+</div>

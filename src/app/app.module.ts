@@ -18,7 +18,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthComponent } from './auth/auth.component';
 import {ButtonModule} from 'primeng/button';
 import { TodoFormComponent } from './todo-form/todo-form.component';
-
+import {InputTextModule} from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,8 @@ import { TodoFormComponent } from './todo-form/todo-form.component';
     ToastrModule.forRoot(),
     AppRoutingModule,
     CheckboxModule,
-    ButtonModule
+    ButtonModule,
+    InputTextModule
   ],
   providers: [],
   bootstrap: [AppComponent]
