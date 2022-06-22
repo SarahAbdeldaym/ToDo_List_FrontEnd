@@ -10,13 +10,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { UpdateTodoComponent } from './update-todo/update-todo.component';
+import { RegisterComponent } from './register/register.component';
+import {PasswordModule} from 'primeng/password';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodosComponent,
     CoverComponent,
-    UpdateTodoComponent
+    UpdateTodoComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,10 @@ import { UpdateTodoComponent } from './update-todo/update-todo.component';
     FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PasswordModule,
+    ToastrModule.forRoot()
+
   ],
   providers: [],
   bootstrap: [AppComponent]

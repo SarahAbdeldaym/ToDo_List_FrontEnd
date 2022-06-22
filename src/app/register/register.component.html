@@ -1,0 +1,32 @@
+<div class="p-fluid grid">
+  <div class="field col-12 md:col-4">
+    <span class="p-float-label">
+      <input type="text" id="name" pInputText [(ngModel)]="name">
+      <label for="name">Name</label>
+    </span>
+  </div>
+  <br>
+  <div class="field col-12 md:col-4">
+    <span class="p-float-label">
+      <input type="text" id="email" pInputText [(ngModel)]="email">
+      <label for="email">Email</label>
+    </span>
+  </div>
+  <br>
+  <div class="field col-12 md:col-4">
+    <span class="p-float-label">
+      <p-password inputId="password" [(ngModel)]="password"></p-password>
+      <label for="password">Password</label>
+    </span>
+  </div>
+  <br>
+  <div class="field col-12 md:col-4">
+    <span class="p-float-label">
+      <input type="password" id="confirm_password" pInputText
+        [(ngModel)]="confirmPassword">
+      <label for="password">Confirm Password</label>
+    </span>
+  </div>
+  <button (click)="signup()">Signup</button>
+</div>
+
