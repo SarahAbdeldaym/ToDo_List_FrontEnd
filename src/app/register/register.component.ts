@@ -18,8 +18,6 @@ export class RegisterComponent implements OnInit {
 
   confirmPassword: string ='';
 
-  rememberMe: boolean = false;
-
   constructor(
     private userService: UserService,
     private toastrService: ToastrService
@@ -27,9 +25,6 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.name = localStorage.getItem('name') ?? '';
-    this.email = localStorage.getItem('email') ?? '';
-    this.rememberMe = (localStorage.getItem('rememberMe') ?? '0') == '1' ? true : false;
   }
 
   signup() {
@@ -37,14 +32,6 @@ export class RegisterComponent implements OnInit {
       this.toastrService.error("Password and confirm password don't match.");
       return;
     }
-
-    if (this.rememberMe) {
-      this.remeberUserCredentials(this.name, this.email);
-      localStorage.setItem('rememberMe', '1');
-    } else {
-      localStorage.setItem('rememberMe', '0');
-    }
-
     this.userService.signup({
       name: this.name,
       email: this.email,
@@ -63,18 +50,6 @@ export class RegisterComponent implements OnInit {
         let input = invalidInputs[index];
         this.toastrService.error(errors[input], 'Invalid input');
       }
-    } else {
-      this.toastrService.info('User has been created.');
-    }
-  }
-
-  private remeberUserCredentials(name: string, email: string): void {
-    if (0 < name.length) {
-      localStorage.setItem('name', name);
-    }
-
-    if (0 < email.length) {
-      localStorage.setItem('email', email);
     }
   }
 }

@@ -1,0 +1,9 @@
+<div *ngIf="!user">
+  <a routerLink="register" routerLinkActive="active" ariaCurrentWhenActive="page">Register</a>
+
+  <a routerLink="login" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a>
+</div>
+
+<div *ngIf="user">
+  <button (click)="logout()">Logout</button>
+</div>

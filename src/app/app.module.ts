@@ -15,6 +15,8 @@ import {PasswordModule} from 'primeng/password';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import {CheckboxModule} from 'primeng/checkbox';
+import { LoginComponent } from './login/login.component';
+import { AuthComponent } from './auth/auth.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import {CheckboxModule} from 'primeng/checkbox';
     TodosComponent,
     CoverComponent,
     UpdateTodoComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,

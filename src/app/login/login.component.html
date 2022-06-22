@@ -1,0 +1,14 @@
+<div>
+  <input type="text" pInputText [(ngModel)]="email">
+</div>
+
+<div>
+  <p-password [(ngModel)]="password" [feedback]="false"></p-password>
+</div>
+
+<div class="field-checkbox">
+  <label for="binary">Remember me</label>
+  <p-checkbox [(ngModel)]="rememberMe" [binary]="true" inputId="binary"></p-checkbox>
+</div>
+
+<button (click)="login()">Login</button>
