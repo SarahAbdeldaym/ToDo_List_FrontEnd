@@ -43,6 +43,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  register(): void {
+  }
+
   private saveUserToken(token: string): void {
     localStorage.setItem('auth-token', token);
     if (this.rememberMe) {

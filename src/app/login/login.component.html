@@ -1,35 +1,37 @@
 
-<div class=" mt-5 d-flex flex-column align-items-center justify-content-center bg-dark" >
- <h1>Login to Your Account </h1>
- <div class="mt-3">
+<div class="mt-5 d-flex flex-column align-items-center justify-content-center
+  bg-dark">
+  <h1>Login to Your Account </h1>
+  <div class="mt-3">
 
- <div class="mt-2">
-    <span class="p-float-label">
-      <input type="text" pInputText [(ngModel)]="email">
-      <label for="inputtext">InputText</label>
-    </span>
-  </div>
+    <div class="mt-2">
+      <span class="p-float-label">
+        <input type="text" pInputText [(ngModel)]="email">
+        <label for="inputtext">InputText</label>
+      </span>
+    </div>
 
-<br>
-<br>
-  <div class="">
-    <span class="p-float-label">
-      <p-password [(ngModel)]="password" [feedback]="false"></p-password>
+    <br>
+    <br>
+    <div class="">
+      <span class="p-float-label">
+        <p-password [(ngModel)]="password" [feedback]="false"></p-password>
         <label for="password">Password</label>
-    </span>
+      </span>
+    </div>
+
+    <br>
+
+    <div class="field-checkbox">
+      <label for="binary">Remember me</label>
+      <p-checkbox [(ngModel)]="rememberMe" [binary]="true" inputId="binary"></p-checkbox>
+    </div>
+    <br>
+
+
+    <div class="d-flex justify-content-end">
+      <a pButton class="text-light text-decoration-none" routerLink="/register" routerLinkActive="active" ariaCurrentWhenActive="page">Register</a>
+      <button pButton class=" mx-4 " type="button" (click)="login()">Login</button>
+    </div>
   </div>
-
-  <br>
-
-  <div class="field-checkbox ">
-    <label for="binary">Remember me</label>
-    <p-checkbox [(ngModel)]="rememberMe" [binary]="true" inputId="binary"></p-checkbox>
-  </div>
-  <br>
-
-
-  <div class="d-flex justify-content-end">
-<button pButton type="button" (click)="login()">Login</button>
-</div>
-</div>
 </div>

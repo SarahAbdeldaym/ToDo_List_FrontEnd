@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { catchError } from 'rxjs';
 import { Todo } from '../models/Todo';
 import { UpdateTodoRequest } from '../requests/update-todo';
@@ -19,7 +20,7 @@ export class TodosComponent implements OnInit {
 
   public isUserAuthenticated: boolean = false;
 
-  constructor(private todoService: TodoService, private userService: UserService) {}
+  constructor(private todoService: TodoService, private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.getTodos();
@@ -99,6 +100,11 @@ export class TodosComponent implements OnInit {
       this.isAddingTodo = false;
       this.getTodos();
     })
+  }
+
+  public logout(): void {
+    localStorage.removeItem('auth-token');
+    this.router.navigate([ '/login' ]);
   }
 
   private getTodos(): void {

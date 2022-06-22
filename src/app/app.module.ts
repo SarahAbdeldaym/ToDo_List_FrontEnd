@@ -15,7 +15,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import {CheckboxModule} from 'primeng/checkbox';
 import { LoginComponent } from './login/login.component';
-import { AuthComponent } from './auth/auth.component';
 import {ButtonModule} from 'primeng/button';
 import { TodoFormComponent } from './todo-form/todo-form.component';
 import {InputTextModule} from 'primeng/inputtext';
@@ -27,7 +26,6 @@ import {InputTextModule} from 'primeng/inputtext';
     CoverComponent,
     RegisterComponent,
     LoginComponent,
-    AuthComponent,
     TodoFormComponent
   ],
   imports: [
