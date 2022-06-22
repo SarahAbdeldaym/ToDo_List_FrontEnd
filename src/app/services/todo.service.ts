@@ -43,6 +43,8 @@ export class TodoService {
   }
 
   deleteTodo(todoId: number): Observable<any> {
-    return this.httpClient.delete(this.baseUrl + '/' + todoId);
+    return this.httpClient.delete(this.baseUrl + '/' + todoId, { headers: {
+      'Authorization': 'Bearer ' + localStorage.getItem('auth-token')
+    } });
   }
  }
