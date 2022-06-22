@@ -13,6 +13,9 @@ import { UpdateTodoComponent } from './update-todo/update-todo.component';
 import { RegisterComponent } from './register/register.component';
 import {PasswordModule} from 'primeng/password';
 import { ToastrModule } from 'ngx-toastr';
+import { AppRoutingModule } from './app-routing/app-routing.module';
+import {CheckboxModule} from 'primeng/checkbox';
+
 
 @NgModule({
   declarations: [
@@ -31,8 +34,9 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     ReactiveFormsModule,
     PasswordModule,
-    ToastrModule.forRoot()
-
+    ToastrModule.forRoot(),
+    AppRoutingModule,
+    CheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

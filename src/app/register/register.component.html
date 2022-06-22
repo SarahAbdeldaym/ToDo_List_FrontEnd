@@ -1,8 +1,8 @@
 <div class="p-fluid grid">
   <div class="field col-12 md:col-4">
     <span class="p-float-label">
+      <label for="float-input">Name</label>
       <input type="text" id="name" pInputText [(ngModel)]="name">
-      <label for="name">Name</label>
     </span>
   </div>
   <br>
@@ -19,7 +19,9 @@
       <label for="password">Password</label>
     </span>
   </div>
+
   <br>
+
   <div class="field col-12 md:col-4">
     <span class="p-float-label">
       <input type="password" id="confirm_password" pInputText
@@ -27,6 +29,14 @@
       <label for="password">Confirm Password</label>
     </span>
   </div>
+
+  <br>
+
+  <div class="field-checkbox">
+    <label for="binary">Remember me</label>
+    <p-checkbox [(ngModel)]="rememberMe" [binary]="true" inputId="binary"></p-checkbox>
+  </div>
+
   <button (click)="signup()">Signup</button>
 </div>
 
