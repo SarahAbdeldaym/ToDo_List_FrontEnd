@@ -1,3 +1,18 @@
+
+<button
+  *ngIf="isUserAuthenticated"
+  pButton
+  pRipple
+  type="button"
+  icon="pi pi-plus"
+  class="p-button-rounded"
+  (click)="openTodoForm()">
+</button>
+
+<p-dialog [(visible)]="isAddingTodo">
+  <app-todo-form (onSave)="addTodo($event)"></app-todo-form>
+</p-dialog>
+
 <div class="p-30">
   <p-pickList
     [source]="pendingTodos"
@@ -6,8 +21,7 @@
     (onMoveToTarget)="completeTodos()"
     (onMoveToSource)="reopenTodos()"
     (onMoveAllToTarget)="completeTodos()"
-    (onMoveAllToSource)="reopenTodos()"
-  >
+    (onMoveAllToSource)="reopenTodos()">
     <ng-template let-todo pTemplate="item">
       <div>
         <i *ngIf="todo.is_done" class="pi pi-check"></i>
@@ -20,34 +34,28 @@
 
         <!-- update todo -->
         <p-dialog [(visible)]="todo == updatedTodo">
-          <app-update-todo
-            [todo]="todo"
-            (todoUpdated)="refreshTodo($event)"
-          ></app-update-todo>
+          <app-todo-form [todo]="todo" (onSave)="refreshTodo($event)"></app-todo-form>
         </p-dialog>
 
         <button
           type="button"
           (click)="showDetails(todo)"
           icon="pi pi-info-circle"
-          label="Show"
-        >
+          label="Show">
           Show
         </button>
         <button
           type="button"
           (click)="updateTodo(todo)"
           icon="pi pi-info-circle"
-          label="Edit"
-        >
+          label="Edit">
           Edit
         </button>
         <button
           type="button"
           (click)="deleteTodo(todo)"
           icon="pi pi-info-circle"
-          label="Show"
-        >
+          label="Show">
           Delete
         </button>
       </div>

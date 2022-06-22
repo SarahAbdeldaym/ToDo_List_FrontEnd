@@ -9,7 +9,6 @@ import {DialogModule} from 'primeng/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
-import { UpdateTodoComponent } from './update-todo/update-todo.component';
 import { RegisterComponent } from './register/register.component';
 import {PasswordModule} from 'primeng/password';
 import { ToastrModule } from 'ngx-toastr';
@@ -17,6 +16,8 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import {CheckboxModule} from 'primeng/checkbox';
 import { LoginComponent } from './login/login.component';
 import { AuthComponent } from './auth/auth.component';
+import {ButtonModule} from 'primeng/button';
+import { TodoFormComponent } from './todo-form/todo-form.component';
 
 
 @NgModule({
@@ -24,10 +25,10 @@ import { AuthComponent } from './auth/auth.component';
     AppComponent,
     TodosComponent,
     CoverComponent,
-    UpdateTodoComponent,
     RegisterComponent,
     LoginComponent,
-    AuthComponent
+    AuthComponent,
+    TodoFormComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +41,8 @@ import { AuthComponent } from './auth/auth.component';
     PasswordModule,
     ToastrModule.forRoot(),
     AppRoutingModule,
-    CheckboxModule
+    CheckboxModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

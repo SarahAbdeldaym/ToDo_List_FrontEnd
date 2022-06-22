@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { catchError } from 'rxjs';
 import { Todo } from '../models/Todo';
+import { UpdateTodoRequest } from '../requests/update-todo';
 import { TodoService } from '../services/todo.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-todos',
@@ -12,11 +15,15 @@ export class TodosComponent implements OnInit {
   public doneTodos: Todo[] = [];
   public visibleTodo: Todo | null = null;
   public updatedTodo: Todo | null = null;
+  public isAddingTodo: boolean = false;
 
-  constructor(private todoService: TodoService) {}
+  public isUserAuthenticated: boolean = false;
+
+  constructor(private todoService: TodoService, private userService: UserService) {}
 
   ngOnInit(): void {
     this.getTodos();
+    this.userService.profile().subscribe(result => this.isUserAuthenticated = true);
   }
 
   public updateTodosCompletion(): void {
@@ -52,27 +59,19 @@ export class TodosComponent implements OnInit {
     this.updatedTodo = todo;
   }
 
-  public refreshTodo(todo: Todo | null) {
-    this.updatedTodo = null;
+  public refreshTodo(todo: Todo) {
+    var updateTodoRequest: UpdateTodoRequest = {};
 
-    if (!todo) {
-      return;
-    }
+    updateTodoRequest.title = todo.title;
+    updateTodoRequest.body = todo.body;
 
-    for (let index = 0; index < this.doneTodos.length; index++) {
-      let _todo = this.doneTodos[index];
-      if (todo.id == _todo.id) {
-        this.doneTodos[index] = todo;
-        break;
-      }
-    }
-
-    for (let index = 0; index < this.pendingTodos.length; index++) {
-      let _todo = this.pendingTodos[index];
-      if (todo.id == _todo.id) {
-        this.pendingTodos[index] = todo;
-        break;
-      }
+    if (Object.values(updateTodoRequest).length) {
+      // At least one property updated.
+      this.todoService.updateTodo(todo.id ?? 0, updateTodoRequest).subscribe(res => {
+        todo = res.data;
+        this.getTodos();
+        this.updatedTodo = null;
+      });
     }
   }
 
@@ -85,6 +84,21 @@ export class TodosComponent implements OnInit {
       this.doneTodos = this.doneTodos.filter(t => t.id != todo.id);
       this.pendingTodos = this.pendingTodos.filter(t => t.id != todo.id);
     });
+  }
+
+  public openTodoForm(): void {
+    this.isAddingTodo = true;
+  }
+
+  public addTodo(todo: Todo): void {
+    this.todoService.createTodo(todo)
+    .pipe(catchError((error: any): any => {
+      this.isAddingTodo = false;
+    }))
+    .subscribe(result => {
+      this.isAddingTodo = false;
+      this.getTodos();
+    })
   }
 
   private getTodos(): void {
