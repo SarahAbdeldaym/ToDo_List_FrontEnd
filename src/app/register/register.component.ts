@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
       let invalidInputs = Object.keys(errors);
       for (let index = 0; index < invalidInputs.length; index++) {
         let input = invalidInputs[index];
-        this.toastrService.error(errors[input], 'Invalid input');
+        this.toastrService.error(errors[input], 'Invalid input' );
       }
     }
   }
