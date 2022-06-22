@@ -50,5 +50,9 @@ export class TodoFormComponent implements OnInit {
     }
 
     this.onSave.emit(todo);
+
+    this.todo = null;
+    this.title = new FormControl('');
+    this.body = new FormControl('');
   }
 }

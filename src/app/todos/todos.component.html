@@ -20,7 +20,7 @@
 </div>
 
   <p-dialog [(visible)]="isAddingTodo">
-    <app-todo-form (onSave)="addTodo($event)"></app-todo-form>
+    <app-todo-form [todo]="null" (onSave)="addTodo($event)"></app-todo-form>
   </p-dialog>
 
   <div class="p-30">
