@@ -3,8 +3,12 @@
 <h1 class="text-center">Your Todo List</h1>
 
 <div class="mt-5">
-  <label for="button"></label>
+
+  <div class=" d-flex flex-row mb-4 p-3">
+  <label class="fw-bold mt-2 " for="button"> Add New Todo</label>
+  <br>
   <button
+  class="mb-4 mr-5"
     *ngIf="isUserAuthenticated"
     pButton
     pRipple
@@ -13,6 +17,7 @@
     class="p-button-rounded"
     (click)="openTodoForm()">
   </button>
+</div>
 
   <p-dialog [(visible)]="isAddingTodo">
     <app-todo-form (onSave)="addTodo($event)"></app-todo-form>
@@ -47,26 +52,29 @@
 
           <div class="d-flex justify-content-end">
             <button
+            class="mx-2"
               type="button"
               pButton
               (click)="showDetails(todo)"
-              icon="pi pi-info-circle"
+              icon="pi pi-eye"
               label="Show">
             </button>
 
             <button
               pButton
+              class="mx-2"
               type="button"
               (click)="updateTodo(todo)"
-              icon="pi pi-info-circle"
+              icon="pi pi-pencil"
               label="Edit">
             </button>
 
             <button
               pButton
+              class="mx-2"
               type="button"
               (click)="deleteTodo(todo)"
-              icon="pi pi-info-circle"
+              icon="pi pi-trash"
               label="Delete">
             </button>
           </div>
